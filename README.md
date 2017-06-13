@@ -1,5 +1,7 @@
 Welcome to the CSS
 
+效果预览：http://www.qdfuns.com/notes/19478/b5fb6f9fd94d402de692c59ca784e798.html
+
 一、最常用的样式
 1. 有哪些元素类型
 2. 文字/容器的水平居中和垂直居中
