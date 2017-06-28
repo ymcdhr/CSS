@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <!-- <link rel="stylesheet" href="index.css" > -->
+
+    <style>
+        
+        body{
+            background-color: #e6e6e6;
+        }
+        .title{
+            font-weight: bold;
+            background-color: transparent;
+        }
+        .section{
+            margin-bottom: 100px;
+            border: 1px dashed #999999;
+            box-sizing: border-box;
+            background-color: #ffffff;
+        }
+
+        div{
+            background-color: #ff671d;
+            margin: 10px 0;
+        }
+        a{
+            background-color: aqua;
+            margin: 10px 0;
+            border: 1px solid #666666;
+            box-sizing: border-box;
+        }
+        p{
+            background-color: burlywood;
+            margin: 10px 0;
+            border: 1px solid #666666;
+            box-sizing: border-box;
+        }
+
+
+        /*定义div背景框*/
+        .arrow{
+            height: 20px;
+            border: 1px solid red;
+            background-color: #e6e6e6;
+            margin: 20px;
+            padding: 20px;
+            position: relative;/*必须定义背景为relative或者absolute*/
+        }
+
+        .arrow:before{
+            display: block;
+            content: "";
+            position: absolute;
+            left: -5px;/*箭头位置*/
+            top: 20px;
+            width: 7px;/*箭头大小*/
+            height: 7px;
+            border: solid red;/*边框样式和颜色*/
+            border-width: 1px 0 0 1px;/*边框*/
+            transform: rotate(-45deg);/*箭头旋转角度*/
+            background-color: #e6e6e6;/*箭头填充色，要与背景色保持一致*/
+        }
+
+        .abstract{
+            background-color: #3092ed;
+            color: #ffffff;
+            padding: 15px;
+            font-size: 14px;
+            line-height: 18px;
+        }
+
+
+
+
+        .use-inherit{
+            width: 200px;
+            height: 200px;
+            background-image: url("images/ipone.jpg");
+            background-size: 100% 100%;
+            position: relative;
+        }
+
+        .use-inherit:after{
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 100%;
+            right: -100%;
+            background-image: inherit;
+            background-size: 100% 100%;
+            transform: rotate(90deg);
+        }
+
+
+        .box1{
+            height: 100px;
+            line-height: 100px;
+            position: relative;
+        }
+
+        .box1:before{
+            content: "";
+            display: block;
+            position: absolute;
+            width: 160px;
+            height: 40px;
+            top: 50%;
+            margin-top: -20px;
+            background-color: #3092ed;
+        }
+
+        .box1_a{
+            position: relative;
+            left: 160px;
+        }
+
+        .important{
+            width: 100px;
+            height: 100px;
+            background-color: #58dea9 !important;
+        }
+
+        .sticky{
+            position: -webkit-sticky!important;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 40;
+            width: 100%;
+            height: 80px;
+            margin: 0;
+            background-color: rgba(51, 51, 51, 0.91);
+            color: #ffffff;
+        }
+    </style>
+    <script type="text/javascript" src="https://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
+</head>
+<body>
+
+
+
+<div class="title">元素类型</div>
+<div class="abstract">
+    元素类型：<br>
+    1、块级元素：块级元素占据其父元素（容器）的整个空间<br>
+    2、行内元素（如：< a >、 < button >）：一个行内元素只占据它对应标签的边框所包含的空间。<br>
+    3、替代元素（如：< button >、< input >、< img >）：可替换元素通过属性或者标签来展示元素。内容展现不是由CSS来控制的，这些元素是一类 外观渲染独立于CSS的 外部对象。<br>
+    4、非替代元素（如：< p >、< label > ）：其内容全部被浏览器展示<br>
+</div>
+
+<div class="section">
+
+    <div>块级元素：占据其父元素（容器）的整个空间</div>
+    <a>行内元素：只占据它对应标签的边框所包含的空间</a>
+
+    <input value="替代元素 input" >
+    <p>不可替代元素</p>
+
+
+</div>
+
+
+
+<div class="section">
+    <a style="padding: 10px;">< a >不可替换行内元素添加padding，不撑大父元素</a><br>
+    <a style="width: 100px;">不可替换行内元素，不可以设置宽高</a>
+</div>
+
+
+<div class="section">
+    <input style="padding: 10px;width: 300px" value="input，行内替换元素添加padding，撑大父元素">
+</div>
+
+
+
+
+
+
+
+<div class="title">1、文字的水平居中</div>
+<div class="abstract">
+    （1）使用text-align: center;<br>
+    （2）注意：容器的有效性
+</div>
+<div class="section">
+    <!--文字的水平居中-->
+    <!--text-align 定义行内元素相对于它的父级块元素如何对齐-->
+    <a style="text-align: center;">
+        inline有效
+    </a>
+
+    <a style="text-align: center;display:block;width: 200px;">
+        强制转换的block有效
+    </a>
+
+    <div style="text-align: center">
+        <a>inline有效</a>
+    </div>
+
+    <div style="text-align: center;">
+        <div style="width: 500px;height: 100px;background-color: #58dea9;">
+            对block容器无效，只对inline元素有效<br>
+            <a>但是子block容器可以继承父元素</a>
+        </div>
+        <div style="border: 1px dotted #333">
+            <a>
+                inline有效：以及所有是inline的子元素都有效
+            </a>
+        </div>
+        <div style="border: 1px dotted #333">
+            <img src="//cdn.avatar.qdfuns.com/000/01/94/19478_aca4e923047d412ce8059a0a910a8276_small.jpg">
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="title">2、容器的水平居中</div>
+<div class="abstract">
+    （1）使用margin: 0 auto;<br>
+    （2）使用text-align: center;子元素会继承
+</div>
+<div class="section">
+
+    <p style="width: 50%;margin: 10px auto">block有效</p>
+    <div style="width: 50%;margin: 10px auto"><p style="width: 50%;">block有效</p></div>
+
+    <a style="width: 50%;margin: 0 auto">inline无效</a>
+
+</div>
+
+
+<div class="section" style="text-align: center;">
+    <p style="width: 50%;">block有效</p>
+    <a style="width: 50%;">inline无效</a>
+</div>
+
+
+
+
+
+
+
+
+<div class="title">3、文字的垂直居中</div>
+<div class="section">
+    <div class="abstract">
+        line-height的理解<br>
+        1、按元素类型区别<br>
+        （1）块级元素：指定子元素的高度<br>
+        （2）非替代行内元素（如：文本等浏览器直接显示的元素）：其行高度<br>
+        （3）行内元素（如：< a > 、 < button >）：有一些<br>
+        2、line-height 的 number | length | percentage<br>
+        3、number 为无单位的数字，例如：line-height：1.5<br>
+        4、percentage 为参考font-size的百分比，例如：line-height：150%<br>
+        5、number和percentage都可以表示倍数（不过，number继承的时候子元素继承倍数，percentage子元素继承百分比算出来的值）
+    </div>
+
+    <div style="height: 50px;line-height:50px;">
+        line-heigh设置行内元素的高度，实现文字的垂直居中
+    </div>
+
+    <div style="height: 50px;line-height:30px;">
+        <div style="height: 30px;background-color: aqua">
+            对于块级元素，会继承父元素的line-height
+        </div>
+
+    </div>
+
+    <div style="height: 50px;line-height:30px;">
+
+        <input style="height: 20px;line-height: 10px;" value="替代行内元素">
+
+        <a style="height: 20px;line-height: 10px;">非替代行内元素</a>
+
+    </div>
+
+
+    <div style="height: 50px;font-size: 20px;line-height:1.5;">
+        <div style="height: 30px;font-size: 10px;background-color: aqua">
+            line-height：1.5，继承的时候子元素继承数字，再自己算
+        </div>
+    </div>
+
+    <div style="height: 50px;font-size: 20px; line-height:150%;">
+        <div style="height: 30px;font-size: 20px;background-color: aqua">
+            line-height：150%，继承的时候子元素继承百分比算出来的值
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+<div class="title">4、容器的垂直居中</div>
+<div class="section">
+
+    （1）固定高度的容器中的图片:使用绝对定位
+    <div style="height: 100px;position:relative;">
+        <p style="width:40px;height: 40px;position:absolute;top: 50%;margin-top: -20px;">
+
+        </p>
+    </div>
+
+
+    （2）未知固定高度的容器中的图片:使用background-position
+    <!--
+    background-color:red;
+    background-image:url('sn.png');
+    background-size:auto 40px;
+    background-position: center;
+    background-repeat: no-repeat;
+    以上参数：可以按任意顺序放置，但是 background-size. 这个属性的定义必须在 <position> 之后, 并使用 '/' 符号分隔。
+    -->
+    <div style="height: 100px;background:red url('//cdn.avatar.qdfuns.com/000/01/94/19478_aca4e923047d412ce8059a0a910a8276_small.jpg') center/auto 40px no-repeat;">
+    </div>
+
+    （3）未知高度的容器中的图片:使用table属性+vertical-align
+    <div style="height: 100px;display:table-cell;vertical-align:middle;margin-bottom: 20px;">
+        <p style="width:40px;height: 40px;"></p>
+    </div>
+    table:
+    <table style="width:100px; height: 100px; background-color: red;">
+        <tr>
+            <td>
+                <p style="width:40px;height: 40px;"></p>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+
+<div class="title">容器和文字的同时垂直居中：</div>
+<div class="section">
+
+    <div class="box1">
+        <a class="box1_a">我是文字，我要居中</a>
+    </div>
+
+
+    单纯使用vertical-align不行，base-line表现不一致
+    <div style="height: 100px;line-height: 100px;">
+        <section style="width:40px;height: 40px;display: inline-block;vertical-align: middle; background-color: #58dea9;"></section>
+        <a style="vertical-align: middle;">我是文字，我要居中11基线一二三</a>
+    </div>
+
+    单纯使用vertical-align不行，base-line表现不一致
+    <div style="height: 100px;line-height: 100px;font-size: 0;">
+        <section style="width:40px;height: 40px;display: inline-block; vertical-align: middle; background-color: #58dea9;"></section>
+        <a style="font-size: 16px;vertical-align: middle;">我是文字，我要居中</a>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="title">5、position的使用：</div>
+<div class="section">
+    <div class="abstract">
+        1、默认值是static<br>
+        2、默认文档流static中：top, right, bottom, left 和 z-index 属性无效。<br>
+        3、absolute会脱离文档流，如果去掉父元素height，否则不会撑大父元素<br>
+        4、relative：相对于本身在文档流中应该存在的位置<br>
+        5、演示：<br>
+        （1）去掉父元素position<br>
+        （2）去掉父元素height
+    </div>
+
+    （1）关于absolute生效的条件：演示：1.去掉父元素position、2.去掉父元素height
+    <div style="position: relative;height: 150px;">
+        <div style="position:absolute;left:20px;top:20px;width: 100px;height: 100px;background-color: chartreuse;"></div>
+    </div>
+
+    （2）关于relative的使用
+    <div>
+        <div style="position:relative;display:inline-block;width: 100px;height: 100px;background-color: chartreuse;"></div>
+        <div style="position:relative;display:inline-block;width: 100px;height: 100px;background-color: chartreuse;"></div>
+        <div style="position:relative;left: 20px;top: 20px;display:inline-block;width: 100px;height: 100px;background-color: chartreuse;"></div>
+        <div style="position:relative;display:inline-block;width: 100px;height: 100px;background-color: chartreuse;"></div>
+    </div>
+
+
+    （3）巧用：top/bottm/left/right<br>
+    <div class="abstract">
+        结论：容器的宽度 = left 到right之间的距离，高度同理
+    </div>
+
+    left: 0;right: 0; == width: 100%;
+    top: 0;bottom:0; == height: 100%
+    <div style="position: relative; width: 200px;height: 200px;">
+        <section style="position: absolute;top: 0;bottom:0; width:100px; background-color: #58dea9;"></section>
+    </div>
+
+    left: 100%;right: -100%; == width: 100%;left: 100%;
+    <div style="position: relative; width: 200px;height: 200px;">
+        <section style="position: absolute;left: 100%;right:-100%; height:100px; background-color: #58dea9;"></section>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="title">文本的换行、不换行、强制换行</div>
+<div class="abstract">
+    说明：<br>
+    1.块级元素设置了宽度之后，文本超长会自动换行<br>
+    2.默认的英文/日文等语言的单词中间不会换行，需要使用：word-break: break-all
+</div>
+
+<div class="section">
+    （1）块级元素文本的自动换行...
+    <p style="width: 200px;overflow: hidden;">块级元素文本的自动换行...块级元素文本的自动换行...块级元素文本的自动换行...块级元素文本的自动换行...</p>
+
+</div>
+
+（2）单行文本的溢出，不换行
+white-space：nowrap	文本不会换行，文本会在在同一行上继续，直到遇到 <br> 标签为止。
+<div class="section" style="white-space: nowrap;">
+    <div style="width: 200px;overflow: hidden;">单行文本的溢出单行文本的溢出单行文本的溢出单行文本的溢出单行文本的溢出单行文本的溢出</div>
+    <div style="width: 200px;overflow: hidden;text-overflow: ellipsis;">单行文本的溢出单行文本的溢出单行文本的溢出单行文本的溢出单行文本的溢出单行文本的溢出</div>
+
+</div>
+
+
+（3）多行文本的溢出，换行(移动端,webkit内核)，要能换行
+<div class="section">
+    <div style="
+    width: 200px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:2;
+    text-overflow: ellipsis;
+    ">
+        多行文本的溢出多行文本的溢出多行文本的溢出多行文本的溢出多行文本的溢出多行文本的溢出多行文本的溢出多行文本的溢出
+    </div>
+
+</div>
+
+
+（4）word-break 的使用
+<div class="section">
+    默认的是英文不换行
+    <div style="width: 200px;">
+        This is a long and Supercalifragilisticexpialidocious sentence. This is a long and Supercalifragilisticexpialidocious sentence.
+    </div>
+
+    <div style="width: 200px;word-break: break-all">
+        This is a long and Supercalifragilisticexpialidocious sentence. This is a long and Supercalifragilisticexpialidocious sentence.
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="title">利用-webkit-box进行布局</div>
+
+<div class="abstract">
+    1、-webkit-box 可以自适应布局
+    2、参数与属性
+    box-orient           子元素排列 vertical or horizontal<br>
+    box-flex             兄弟元素之间比例，仅作一个系数<br>
+    display: -moz-box;                /* Mozilla */<br>
+    display: -webkit-box;             /* WebKit */<br>
+    display: box;                     /* As specified */<br>
+</div>
+
+<div class="section">
+
+    <div style="height:50px;display: -webkit-box;-webkit-box-orient: horizontal;">
+        <div style="-webkit-box-flex: 1;background-color: cornflowerblue">1个宽度</div>
+        <div style="-webkit-box-flex: 2;background-color: cadetblue">2个宽度</div>
+        <div style="-webkit-box-flex: 3;background-color: chocolate">3个宽度</div>
+    </div>
+
+
+    <div style="width:200px;height:180px;display: -webkit-box;-webkit-box-orient: vertical;">
+        <div style="-webkit-box-flex: 1;background-color: cornflowerblue;margin: 0;">1个高度</div>
+        <div style="-webkit-box-flex: 2;background-color: cadetblue;margin: 0;">2个高度</div>
+        <div style="-webkit-box-flex: 3;background-color: chocolate;margin: 0;">3个高度</div>
+    </div>
+</div> 
+
+
+
+
+<div class="title">利用-webkit-flex进行布局</div>
+<div class="abstract">
+    1、Flex布局是流式的，从左到右/从上到下 按照一条抽线排列<br>
+    2、flex-direction:<br>
+    （1）row（默认值）：主轴为水平方向，起点在左端。<br>
+    （2）column：主轴为垂直方向，起点在上沿。<br>
+    具体参考：<br>
+    http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?utm_source=tuicool<br>
+    https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes<br>
+</div>
+
+<div class="section">
+    <div style="height:50px;display: -webkit-flex;flex-direction: row ;">
+        <div style="background-color: cornflowerblue;">1个宽度</div>
+        <div style="background-color: cadetblue;">1个宽度</div>
+        <div style="background-color: chocolate;">1个宽度</div>
+
+    </div>
+
+    <div style="width:100px;height:200px;display: -webkit-flex;flex-direction: column ;">
+        <div style="background-color: cornflowerblue;margin: 0;">1个高度</div>
+        <div style="background-color: cadetblue;margin: 0;">1个高度</div>
+        <div style="background-color: chocolate;margin: 0;">1个高度</div>
+
+    </div>
+</div>
+
+
+
+
+<div class="title">CSS的继承inherit的巧用：</div>
+<div class="section" style="background-color: #c0eddb;">
+    <div class="use-inherit"></div>
+</div>
+
+
+
+
+
+
+
+
+<div class="title">
+    巧用sticky效果
+</div>
+<div class="abstract">
+    元素在跨越特定的阈值之前为相对定位，之后为固定定位。
+</div>
+<div class="section">
+    <div id="sticky" class="sticky">
+        我是sticky，我会贴到文档顶部（此处由于iframe的原因无法生效）
+    </div>
+
+    <div style="height: 400px;">
+        我是sticky下面的DIV<br>
+        我是sticky下面的DIV<br>
+        我是sticky下面的DIV<br>
+        我是sticky下面的DIV<br>
+        我是sticky下面的DIV<br>
+        我是sticky下面的DIV<br>
+        我是sticky下面的DIV<br>
+        我是sticky下面的DIV<br>
+        我是sticky下面的DIV<br>
+        我是sticky下面的DIV<br>
+        我是sticky下面的DIV<br>
+        我是sticky下面的DIV<br>
+        我是sticky下面的DIV<br>
+        我是sticky下面的DIV<br>
+        我是sticky下面的DIV<br>
+        我是sticky下面的DIV<br>
+        我是sticky下面的DIV<br>
+        我是sticky下面的DIV<br>
+        我是sticky下面的DIV<br>
+        我是sticky下面的DIV<br>
+    </div>
+</div>
+
+
+<script>
+    var stickyTop = function (t) {
+        function i() {
+            if (o.css("position").indexOf("sticky") < 0) {
+                var t = o.parent().offset().top;
+                window.scrollY > t ? o.css("position", "fixed") && e.height(o.height()) : o.css("position", "static") && e.height(0)
+            }
+        }
+
+        if (document.querySelector(t)) {
+            {
+                var o = $(t), e = o.parent().find(".placeholder");
+                o.parent().offset().top
+            }
+            i(), window.addEventListener("scroll", i)
+        }
+    };
+
+    $(function(){
+
+        stickyTop("#sticky");
+
+    })
+</script>
+
+
+
+
+
+
+<div class="title">inline-block的坑：</div>
+<div class="section">
+
+    问题1：inline-block之间有空隙<br/>
+    问题2：顶部没有对齐
+    <div style="height: 100px;">
+        <div style="display:inline-block;width: 100px;background-color: chartreuse">
+            inline1
+        </div>
+        <div style="display:inline-block;width: 100px;background-color: chartreuse">
+            inline2
+            inline2
+        </div>
+        <div style="display:inline-block;width: 100px;background-color: chartreuse">
+            inline3
+        </div>
+    </div>
+
+    去除空隙方法一：使用margin-left<br/>
+    <div style="height: 100px;">
+        <div style="display:inline-block;width: 100px;background-color: chartreuse;vertical-align:top;">
+            inline1
+        </div>
+        <div style="display:inline-block;width: 100px;background-color: chartreuse;margin-left: -8px;">
+            inline2
+            inline2
+        </div>
+    </div>
+
+    去除空隙方法二：使用font-size（兼容性较好）<br/>
+    <div style="height: 100px;font-size: 0;">
+        <div style="display:inline-block;width: 100px;background-color: chartreuse;font-size:16px;vertical-align:top;">
+            inline1
+        </div>
+        <div style="display:inline-block;width: 100px;background-color: chartreuse;font-size:16px;">
+            inline2
+            inline2
+        </div>
+    </div>
+
+
+    顶部对齐方法：使用vertical-align:top;
+
+    <div style="height: 100px;font-size: 0;">
+        <div style="display:inline-block;width: 100px;background-color: chartreuse;font-size:16px;vertical-align:top;">
+            inline1
+        </div>
+        <div style="display:inline-block;width: 100px;background-color: chartreuse;font-size:16px;">
+            inline2
+            inline2
+        </div>
+        <div style="display:inline-block;width: 100px;background-color: chartreuse;font-size:16px;vertical-align:top;">
+            inline3
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="title">float的坑， 使用float实现此类布局</div>
+<div class="section">
+    问题一：怎么样撑大父元素，以下红色的为父元素
+    <div style="border: 1px solid #ccc">
+        这是父元素的文字
+        <p style="float: left;width: 100px;height: 50px;">block</p>
+        <p style="float: left;width: 100px;height: 50px;">block</p>
+        <p style="float: left;width: 100px;height: 50px;">block</p>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div class="abstract">
+        父级元素必须使用overflow:hidden(只要不是默认值visible都行)，其作用是<br>
+        1、设置float属性后，子元素和父元素不在同一个文档流。<br>
+        2、overflow: hidden; 有清除浮动的作用：清除浮动后，item会和box在同一个文档流里面，便会撑大box
+    </div>
+
+    <div style="overflow: hidden;">
+
+        <p style="float: left;width: 100px;height: 50px;">block</p>
+        <p style="float: left;width: 100px;height: 50px;">block</p>
+        <p style="float: left;width: 100px;height: 50px;">block</p>
+
+    </div>
+</div>
+
+
+
+<div class="section">
+    问题二：inline元素可以使用float吗？<br/>
+    由于 float 使用了块布局，所以它会改变 display 的计算值：
+    <div style="overflow: hidden;">
+        <a style="float: left;width: 100px;height: 50px;">inline变成了block</a>
+        <a style="float: left;width: 100px;height: 50px;">inline变成了block</a>
+        <a style="float: left;width: 100px;height: 50px;">inline变成了block</a>
+
+    </div>
+
+    使用float实现的列表
+    <div style="overflow: auto;width: 200px;">
+        <a style="float: left;width: 100px;height: 50px;">inline变成了block</a>
+        <a style="float: left;width: 100px;height: 50px;">inline变成了block</a>
+        <a style="float: left;width: 100px;height: 50px;">inline变成了block</a>
+        <a style="float: left;width: 100px;height: 50px;">inline变成了block</a>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="title">margin、padding使用百分比是相对于 宽度</div>
+<div class="section" style="width: 50px;height: 200px;border: none;">
+    <div style="padding-top: 50%;margin: 0;">
+        <div style="background-color: #666666;height: 50px;margin: 0;">子元素</div>
+    </div>
+</div>
+
+<div class="title">top、left使用百分比是相对于对应的高度</div>
+<div class="section" style="position:relative;width: 50px;height: 200px;border: none;">
+    <div style="position:absolute;top: 50%;margin: 0;">
+        <div style="background-color: #666666;height: 50px;margin: 0;">子元素</div>
+    </div>
+</div>
+
+
+
+
+<div class="title">!important的使用</div>
+<div class="section">
+    <div class="important" style="background-color: red;">
+
+    </div>
+</div>
+
+
+
+
+
+<div class="title">盒子模型与box-sizing：</div>
+<div class="section">
+    参考box.html
+</div>
+
+
+
+
+
+
+
+<div class="title">:before和:after伪类的使用（:first-child、:nth-child）</div>
+<div class="section">
+    利用：before画一个左箭头：
+    <div class="arrow">
+        利用：before画箭头
+    </div>
+</div>
+
+
+
+</body>
+</html>
