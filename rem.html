@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--统一使用UTF-8编码 ；-->
+    <meta charset="UTF-8">
+    <!--//initial-scale=1.0：强制让文档的宽度与设备的宽度保持1:1-->
+    <!--//maximum-scale=1.0：文档最大的宽度比例是1.0-->
+    <!--//user-scalable=0：且不允许用户点击屏幕放大浏览-->
+    <!--//尤其要注意的是：content里多个属性的设置一定要用“分号+空格”来隔开，如果不规范将不会起作用。-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta name="wap-font-scale" content="no" />
+    <title></title>
+
+    <style>
+        /*rem标准，750px 为设计基准，除以基数50，即 10px/50 = 0.2rem，以此类推,字体还是 px*/
+
+        html{font-size:50px;}
+        body{font-size:24px;}
+        @media screen and (min-width:320px){
+            html{font-size:21.333333333333332px;}
+            body{font-size:12px;}
+        }
+        @media screen and (min-width:360px){
+            html{font-size:24px;}
+            body{font-size:12px;}
+        }
+        @media screen and (min-width:375px){
+            html{font-size:25px;}
+            body{font-size:12px;}
+        }
+        @media screen and (min-width:384px){
+            html{font-size:25.6px;}
+            body{font-size:14px;}
+        }
+        @media screen and (min-width:400px){
+            html{font-size:26.666666666666668px;}
+            body{font-size:14px;}
+        }
+        @media screen and (min-width:414px){
+            html{font-size:27.6px;}
+            body{font-size:14px;}
+        }
+        @media screen and (min-width:424px){
+            html{font-size:28.266666666666667px;}
+            body{font-size:14px;}
+        }
+        @media screen and (min-width:480px){
+            html{font-size:32px;}
+            body{font-size:15.36px;}
+        }
+        @media screen and (min-width:540px){
+            html{font-size:36px;}
+            body{font-size:17.28px;}
+        }
+        @media screen and (min-width:720px){
+            html{font-size:48px;}
+            body{font-size:23.04px;}
+        }
+        @media screen and (min-width:750px){
+            html{font-size:50px;}
+            body{font-size:24px;}
+        }
+
+        .w{
+            max-width: 15rem;
+            background-color: #f2f2f2;
+        }
+
+        h1{
+            font-size: .48rem;
+        }
+        p{
+            font-size: .28rem;
+        }
+
+        img{
+            width: 5rem;
+            height: 5rem;
+            margin: 0 auto;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="w">
+        <img src="images/ipone.jpg">
+        <h1>REM的定义：</h1>
+        <p>rem是相对于根元素'html'来设置字体大小的，这样就意味着，我们只需要在根元素确定一个参考值，在根元素中设置多大的字体，这完全可以根据您自己的需求。</p>
+
+        <h1>REM支持的浏览器：</h1>
+        支持的浏览器还是蛮多的，比如：Mozilla Firefox 3.6+、Apple Safari 5+、Google Chrome、IE9+和Opera11+。只是可怜的IE6-8无法支持。
+
+        <h1>REM与EM、PX的区别：</h1>
+        <p>PX：像素，比较精确的单位，但不好做响应式布局
+        EM：以父节点font-size大小为参考点，标准不统一，容易造成混乱</p>
+
+        <h1>REM使用方法示例：</h1>
+        <p>1.html中默认的 font-size:16px; 也就是 1rem = 16px
+        2.以设计宽度为750px为例，那么定义 font-size:50px; 那么 1rem = 50px，比例为：750/50=15
+        3.定义页面中的尺寸，就是: 宽度/50 rem（比例为15）。例如：设计稿中dom（20px）的尺寸为：20px/50=0.4rem
+        4.针对不同屏幕尺寸，按同比例设置font-size（比例仍为15）。相当于1rem 变成对应大小（font-size变小多少，1rem就同比例变小多少）。
+        5.例如：
+        屏幕宽度为750px，则html设置的font-size为：750/15 = 50，设计稿中dom（20px）的尺寸为：20px/50=0.4rem，1rem = 50px
+        屏幕宽度为320px，则html设置的font-size为：320/15 = 21.33....，设计稿中dom（20px）的尺寸依然为：20px/50=0.4rem，1rem = 320/750*50px</p>
+    </div>
+</body>
+</html>
