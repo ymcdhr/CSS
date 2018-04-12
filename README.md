@@ -1,7 +1,7 @@
 Welcome to the CSS
 
 因为git上无法直接预览效果，请移步至：
-http://www.qdfuns.com/notes/19478/b5fb6f9fd94d402de692c59ca784e798.html
+[https://s3-ap-southeast-1.amazonaws.com/vue201804121500/css/index.html](https://s3-ap-southeast-1.amazonaws.com/vue201804121500/css/index.html)
 
 # 一、最常用的样式
 1. 有哪些元素类型
@@ -31,8 +31,10 @@ http://www.qdfuns.com/notes/19478/b5fb6f9fd94d402de692c59ca784e798.html
 * 避免使用低性能选择器，例如标签选择器、多重选择器和后代选择器：  /* 性能较低的选择器 */ div { … } ul li a { … } body.profile ul.tabs.nav li a { … } 
 
 # 四、推荐阅读：CSS与设备屏幕的关系
-1. 什么是PPI、DPI、以及与CSS的关系？
-http://www.infoq.com/cn/articles/development-of-the-mobile-web-deep-concept
+1. 什么是PPI、DPI、以及与CSS的关系？<br/>
+http://www.infoq.com/cn/articles/development-of-the-mobile-web-deep-concept<br/>
+2. 移动端多屏适配方案<br/>
+https://github.com/ymcdhr/responsive-mobile<br/>
 
 # 五、推荐阅读：响应式布局
 1. 响应式布局方案，参考：rem.html
